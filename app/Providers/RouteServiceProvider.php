@@ -33,6 +33,11 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
+
+
+            Route::middleware('web') //كده انت شغلت الراوت الجديد اللي انت عملته 
+                ->prefix('boss')
+                ->group(base_path('routes/boss.php'));
         });
     }
 

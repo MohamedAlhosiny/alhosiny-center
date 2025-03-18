@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Drive;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DriveController extends Controller
 {
     public function __construct()
     {
-       $this->middleware('auth')->except(['index' , 'create' , 'store']);
+       $this->middleware('auth')->only(['index' , 'create' , 'store']);
 
     }
 
@@ -25,6 +26,17 @@ class DriveController extends Controller
         $drives = Drive::where('user_id' , auth()->id())->get();
         // return $drives;
         return view('drives.myfiles' , compact('drives'));
+    }
+
+
+    public function allfiles(){
+
+        // $drives = DB::table('drives')->where('id' , 2)->first();
+        // $drives = DB::table('drives')->where('id' , 2)->value('title'); //to get particular column ====
+
+        $drives = DB::table('drives')->get();
+        return view('drives.allfiles' , ['drives'=> $drives ]);
+
     }
 
 
@@ -47,9 +59,9 @@ class DriveController extends Controller
     }
 
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
+
+
     public function create()
     {
         //

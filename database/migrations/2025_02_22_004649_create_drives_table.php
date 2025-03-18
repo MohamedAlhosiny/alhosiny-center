@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('file_type');
             $table->enum('status', ['public' , 'private'])->default('private');
             $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('casecade');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

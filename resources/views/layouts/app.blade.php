@@ -62,10 +62,15 @@
                                     {{ Auth::user()->name }}
                                 </a>
 
+
+
+
+
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    @auth('web')
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                     onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
                                     <a class="dropdown-item" href="{{route('drives.myfiles')}}">
@@ -75,7 +80,23 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-                                </div>
+
+                                @endauth
+
+
+                                @auth('admin')
+
+                                    <a class="dropdown-item" href="{{ route('admin.logout') }}">
+
+                                        {{ __('Logout') }}
+                                    </a>
+
+
+                                @endauth
+
+                            </div>
+
+
                             </li>
                         @endguest
                     </ul>
